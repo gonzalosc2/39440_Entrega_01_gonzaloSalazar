@@ -23,13 +23,13 @@ function cerrarSesion() {
 }
 
 function transferenciaBancaria(balance) {
-    let monto = prompt(`Ingrese el monto a transferir.`)
+    let monto = Number(prompt(`Ingrese el monto a transferir.`))
 
-    if(monto>balance) {
+    if(monto>balance || monto <= 0 || isNaN(monto)) {
         alert(`No es posible realizar la transacción. 
-               Usted está intentando transferir un monto superior a su balance.
+               Usted está intentando transferir un valor que no corresponde.
                Se volverá al menú inicial`)
-        console.log(`El usuario ha intentado transferir un monto superior a su saldo actual.`)
+        console.log(`El usuario ha ingresado un valor incorrecto. Transferencia incompleta.`)
     }
 
     else {
@@ -42,11 +42,20 @@ function transferenciaBancaria(balance) {
 }
 
 function abono(balance) {
-    let monto = prompt(`Ingrese el monto a abonar.`)
+    let monto = Number(prompt(`Ingrese el monto a abonar.`))
 
-    balance += monto
-    alert(`Usted ha abonado ${monto} de manera exitosa. Su nuevo saldo es de ${balance}`)
-    console.log(`El usuario ha realizado un abono exitoso. Saldo actual ${balance}`)
+    if(monto <= 0 || isNaN(monto)) {
+        alert(`No es posible realizar la transacción. 
+        Usted está intentando abonar un valor que no corresponde.
+        Se volverá al menú inicial`)
+        console.log(`El usuario ha ingresado un valor incorrecto. Abono incompleto.`)
+    }
+
+    else {
+        balance += monto
+        alert(`Usted ha abonado ${monto} de manera exitosa. Su nuevo saldo es de ${balance}`)
+        console.log(`El usuario ha realizado un abono exitoso. Saldo actual ${balance}`)
+    }
 
     return balance
 }
